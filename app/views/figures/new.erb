@@ -1,0 +1,5 @@
+<h1>Figures New</h1>
+
+<form action="/figures" method="POST">
+    <input id="<%= genre.name %>" type="checkbox" value="<%= genre.id %>" name="genres[]"<%= "checked" if @song.genres.include?(genre) %>>
+</form>
