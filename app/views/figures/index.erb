@@ -1,0 +1,7 @@
+<h1>NYC Figures</h1>
+
+<% Figure.all.each do |figure| %>
+  <ul>
+    <li><%= figure.id %>. <%= figure.name %> <%= figure.titles.first %></li>
+  </ul>
+<% end %>

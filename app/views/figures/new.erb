@@ -1,5 +1,29 @@
-<h1>Figures New</h1>
+<h1>Create a figure</h1>
 
 <form action="/figures" method="POST">
-    <input id="<%= genre.name %>" type="checkbox" value="<%= genre.id %>" name="genres[]"<%= "checked" if @song.genres.include?(genre) %>>
+  <label>Figure name:</label>
+  <input type="text" name="figure[name]" id="figure_name">
+  <br>
+  <br>
+  <label>Title:</label>
+  <% Title.all.each do |title| %>
+  <input type="checkbox" value="<%= title.id %>" name="figure[title_ids][]" id="title_<%= title.id %>"><%= title.name %></input>
+  <% end %>
+  <br>
+  <br>
+  <label>New Title:</label>
+  <input type="text" name="title[name]" id="new_title">
+  <br>
+  <br>
+  <label>Landmark:</label>
+    <% Landmark.all.each do |landmark| %>
+  <input type="checkbox" value="landmark.id" name="figure[landmark_ids][]" id="landmark_<%= landmark.id %>"><%= landmark.name %></input>
+  <% end %>
+  <br>
+  <br>
+  <label>New Landmark:</label>
+  <input type="text" name="landmark[name]" id="new_landmark">
+  <br>
+  <br>
+  <input type="submit" value="Create New Figure">
 </form>
