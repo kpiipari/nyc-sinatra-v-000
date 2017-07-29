@@ -12,26 +12,30 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    new_title = params[:title][:name]
-    existing_title = params[:figure][:title_ids]
-    new_landmark = params[:landmark][:name]
-    edit_landmark = params[:figure][:landmark_ids]
 
     @figure = Figure.create(:name => params[:figure][:name])
 
-    if new_title != ""
-      @title = Title.create(:name => new_title)
-    elsif existing_title
-      @title = Title.find_by(:id => existing_title)
+    if params[:title][:name] != ""
+      title = Title.create(:name => params[:title][:name])
+      @figure.titles << title
     end
-    @figure.titles << @title
 
-    if new_landmark != ""
-      @landmark = Landmark.create(:name => new_landmark)
-    elsif edit_landmark
-      @landmark = Landmark.find_by(:id => edit_landmark)
+    if params[:figure][:title_ids]
+      params[:figure][:title_ids].each do |id|
+        @figure.titles << Title.find_by(:id => id)
+      end
     end
-    @figure.landmarks << @landmark
+
+    if params[:landmark][:name] != ""
+      landmark = Landmark.create(:name => params[:landmark][:name])
+      @figure.landmarks << landmark
+    end
+
+    if params[:figure][:landmark_ids]
+      params[:figure][:landmark_ids].each do |id|
+        @figure.landmarks << Landmark.find_by(:id => id)
+      end
+    end
 
     @figure.save
 
@@ -40,7 +44,6 @@ class FiguresController < ApplicationController
 
   get '/figures/:id' do
     @figure = Figure.find(params[:id])
-    @figure_title =
     erb :'figures/show'
   end
 
@@ -50,31 +53,35 @@ class FiguresController < ApplicationController
   end
 
   patch '/figures/:id' do
-    new_title = params[:title][:name]
-    existing_title = params[:figure][:title_ids]
-    new_landmark = params[:landmark][:name]
-    edit_landmark = params[:figure][:landmark_ids]
 
     @figure = Figure.find(params[:id])
-    @figure.name = params[:figure][:name]
+    @figure.update(:name => params[:figure][:name])
 
-    if new_title != ""
-      @title = Title.create(:name => new_title)
-    elsif existing_title
-      @title = Title.find_by(:id => existing_title)
+    if params[:title][:name] != ""
+      title = Title.find_or_create_by(:name => params[:title][:name])
+      @figure.titles << title
     end
-    @figure.titles << @title
 
-    if new_landmark != ""
-      @landmark = Landmark.create(:name => new_landmark)
-    elsif edit_landmark
-      @landmark = Landmark.update(:id => edit_landmark)
+    if params[:figure][:title_ids]
+      params[:figure][:title_ids].each do |id|
+        @figure.titles << Title.find_or_create_by(:id => id)
+      end
     end
-    @figure.landmarks << @landmark
-    @figure.titles << @title
+
+    if params[:landmark][:name] != ""
+      landmark = Landmark.find_or_create_by(:name => params[:landmark][:name])
+      @figure.landmarks << landmark
+    end
+
+    if params[:figure][:landmark_ids]
+      params[:figure][:landmark_ids].each do |id|
+        @figure.landmarks << Landmark.find_or_create_by(:id => id)
+      end
+    end
+
     @figure.save
 
-    redirect to "/figures"
+    redirect to "figures/#{@figure.id}"
   end
 
 end

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+     Frank Sinatra
+
+  "The old crooner himself:"
+       QB"   .  . ....^FBQQBQBQ
+       #^   ..../,, ,/yyBQBDBt`"B
+     B"  ._L_yQ&Qy&&QQBQQDlL;S; (Q
+    B^   /DQQQBQQQQQQBQBDQQD1:   "B
+   Q~   ,GQBDQDQQQQQQBBQQDQ&EC    7B
+   D    lQQQQQBQBQQQQQQQQBBID('    {
+   E   .iDDBQQBQQQQBBBQBQQDQ1!:    (
+   3   .(BQBBQBBQQQQBBQBBBDBS'     }                     I'm
+   Q   '~~<MMBQQBBQBP"""<BD1EL.    Q                   dreaming
+   Q    LuL `7QBBB?../LL;.!JDL     Q                    of a
+  "  ,  ,__&L.DBBEEL1L_,'EylEE!  ,U                     white
+  1 :s&yyQQQ6-DQBBQ&QQQQQQQQJY!  lyB1Q                Christmas.
+  S  ?DDQQBD'.QQBDQDBQBQQQDD1<  LIQDG
+  Q   j8BQE2 LQQBE9EBBEBQQES{! /BQSE
+   Q_ 'TS7L  <#P~^,G1?TXC3({!  3PEy
+    Q, ,_>'.,___yBD1DU;,'('''  yQ
+     L "Qy,  'IIIZl',L/&;!;:  LQ
+     Q; FD(  (`IE2L/QDB&lY!   6Q
+      Q, (/. `!?"21iQDU&/~   L FB
+       Q_ (EL/&&QDBQBDJ"   ,y^  `FB
+        Qy 75EEBBQESf`   _yB^      "M
+        Q7  `'^""~`   _yQQM'         `"FQ
+        F;         _yQQQQF              Q
+  -->
+  </head>
+  <body>
+    <h1>Create a figure</h1>
+
+<form action="/figures" method="POST">
+  <label>Figure name:</label>
+  <input type="text" name="figure[name]" id="figure_name">
+  <br>
+  <br>
+  <label>Title:</label>
+  
+  <input type="checkbox" value="24" name="figure[title_ids][]" id="title_24">Mr. President</input>
+  
+  <input type="checkbox" value="25" name="figure[title_ids][]" id="title_25">Mr. President</input>
+  
+  <br>
+  <br>
+  <label>New Title:</label>
+  <input type="text" name="title[name]" id="new_title">
+  <br>
+  <br>
+  <label>Landmark:</label>
+  
+  <input type="checkbox" value="22" name="figure[landmark_ids][]" id="landmark_22">BQE</input>
+  
+  <input type="checkbox" value="23" name="figure[landmark_ids][]" id="landmark_23">BQE</input>
+  
+  <br>
+  <br>
+  <label>Create new landmark:</label>
+  <label>Name:</label>
+  <input type="text" name="landmark[name]" id="new_landmark">
+  <label>Year:</label>
+  <input type="text" name="landmark[year_completed]">
+  <br>
+  <br>
+  <input type="submit" value="Create New Figure">
+</form>
+
+  </body>
+
+</html>
