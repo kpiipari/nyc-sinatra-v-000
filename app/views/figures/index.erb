@@ -1,7 +1,12 @@
 <h1>NYC Figures</h1>
 
 <% Figure.all.each do |figure| %>
-  <ul>
-    <li><%= figure.id %>. <%= figure.name %> <%= figure.titles.first %></li>
-  </ul>
+    <p><%= figure.id %>. <%= figure.name %></p>
+    <% if !figure.titles.empty? %>
+          <p><%= figure.titles.first.name %></p>
+    <% end %>
+    <% if !figure.landmarks.empty? %>
+          <p>Landmark: <%= figure.landmarks.first.name %></p>
+          <p>Year completed: <%= figure.landmarks.first.year_completed %></p>
+    <% end %>
 <% end %>
